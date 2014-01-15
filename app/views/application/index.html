@@ -1,26 +1,16 @@
-<h1>Hearthstone Simulation</h1>
-
+<h1>Hearthstone-Style Ladder Simulation</h1>
 
 <button type="button" id="startstop">Start/Stop</button>
 <button type="button" id="reset">Reset</button>
-<div id="graph"></div>
-
-<script>
-(window.sim = new App.Simulation()).initialize({numActors: 1000});
-$('#startstop').on('click', function() {
-  if(window.sim.interval) {
-    clearInterval(window.sim.interval);
-    window.sim.interval = null;
-  } else {
-    window.sim.interval = setInterval(function(){window.sim.doRounds(1);}, 10);
-  }
-});
-$('#reset').on('click', function() {
-  clearInterval(window.sim.interval);
-  window.sim = null
-  (window.sim = new App.Simulation()).initialize({numActors: 1000});
-});
-
-</script>
-
-
+<div id="container1" class="graphcontainer">
+  <div class="yaxis"></div>
+  <div class="graph"></div>
+</div>
+<div id="container2" class="graphcontainer">
+  <div class="yaxis"></div>
+  <div class="graph"></div>
+</div>
+<div id="container3" class="graphcontainer">
+  <div class="yaxis"></div>
+  <div class="graph"></div>
+</div>

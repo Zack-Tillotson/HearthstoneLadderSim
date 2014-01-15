@@ -2,10 +2,12 @@
 
 class App.Simulation
 
-  initialize: (options) ->
-    @numActors = options.numActors - options.numActors % 2
+  initialize: (options = {}) ->
+    @numActors = (options.numActors - options.numActors % 2) if options.numActors
     @actors = (new App.Actor().initialize(strength: num) for num in [0...@numActors])
-    @rankingGraph= new App.RankingGraph().initialize(@actors)
+    @rankingGraph = new App.RankingGraph().initialize(actors: @actors, container: '#container1')
+    @oppSkillGraph = new App.OppSkillGraph().initialize(actors: @actors, container: '#container2')
+    @skillDiffGraph = new App.SkillDiffGraph().initialize(actors: @actors, container: '#container3')
 
   doRound: ->
 
@@ -20,22 +22,24 @@ class App.Simulation
     for i in [0...@actors.length] by 2
       @doMatchup @actors[i], @actors[i + 1]
 
-  printStats: ->
-    vis = _.sortBy @actors, "strength"
-    console.log "#{actor.strength}: #{actor.stars} => #{actor.wins} / #{actor.wins + actor.losses}" for actor in vis
-
   doMatchup: (a, b) ->
 
-    isWinnerA = a.strength > b.strength
+    isWinnerA = @chooseWinner a, b
 
     a.recordGame(b, isWinnerA)
     b.recordGame(a, !isWinnerA)
 
-  doRounds: (number) ->
+  chooseWinner: (a, b) ->
+    a.strength + Math.random() * Math.pow(@numActors, .5) > b.strength + Math.random() * Math.pow(@numActors, .5)
+    #a.strength > b.strength
+
+  simulateRounds: (number) ->
+
     @doRound() for i in [0...number]
 
-    # Update stats and visualizations
     @actors.sort (a, b) ->
       a.strength - b.strength
 
     @rankingGraph.update(@actors)
+    @oppSkillGraph.update(@actors)
+    @skillDiffGraph.update(@actors)

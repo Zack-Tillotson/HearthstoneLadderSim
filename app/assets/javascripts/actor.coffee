@@ -2,40 +2,47 @@ class App.Actor
   initialize: (options) ->
     @strength = options.strength
     @stars = 0
-    @wins = 0
-    @losses = 0
+    @lastNGames = []
+    @n = 10
     @
 
   recordGame: (opp, isWin) ->
     if isWin
-      @wins++
       if @stars < 100
         @stars++
-    else 
-      @losses++
+    else
       if @stars > 0
         @stars--
+    if (@lastNGames.unshift opp.strength) > @n
+      @lastNGames.pop
 
   getRank: ->
-    if @stars < 3 then return 1 # 3
-    if @stars < 6 then return 2
-    if @stars < 9 then return 3
-    if @stars < 12 then return 4
-    if @stars < 15 then return 5 # 3
-    if @stars < 19 then return 6 # 4
-    if @stars < 23 then return 7
-    if @stars < 27 then return 8
-    if @stars < 31 then return 9
-    if @stars < 35 then return 10 # 4
-    if @stars < 40 then return 11 # 5
-    if @stars < 45 then return 12
-    if @stars < 50 then return 13
-    if @stars < 55 then return 14
-    if @stars < 65 then return 15
-    if @stars < 70 then return 16
-    if @stars < 75 then return 17
-    if @stars < 80 then return 18
-    if @stars < 85 then return 19
-    if @stars < 90 then return 20
-    if @stars < 95 then return 21
-    return 22
+    if @stars < 4 then return 20 # 3
+    if @stars < 8 then return 19
+    if @stars < 12 then return 18
+    if @stars < 16 then return 17
+    if @stars < 20 then return 16 # 3
+    if @stars < 25 then return 15 # 4
+    if @stars < 30 then return 14
+    if @stars < 35 then return 13
+    if @stars < 40 then return 12
+    if @stars < 45 then return 11 # 4
+    if @stars < 51 then return 10 # 5
+    if @stars < 57 then return 9
+    if @stars < 63 then return 8
+    if @stars < 69 then return 7
+    if @stars < 75 then return 6
+    if @stars < 81 then return 5
+    if @stars < 87 then return 4
+    if @stars < 93 then return 3
+    if @stars < 99 then return 2
+    return 1
+
+  getAvgOppStrength: ->
+    if @lastNGames.length > 0
+      tot = _.reduce @lastNGames, (memo, obj) ->
+        memo + obj
+      , 0
+      tot / @lastNGames.length
+    else
+      0
