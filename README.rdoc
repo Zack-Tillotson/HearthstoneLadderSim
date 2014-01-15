@@ -1,0 +1,57 @@
+Hearthstone Ladder Simulation
+Zack Tillotson - Jan 2014
+
+The purpose of this project is to create a simulation showing how the current Hearthstone ladder system works (or doesn't). A visualisation
+element will be included to provide quick and obvious analysis of the situation.
+
+Background
+
+The Hearthstone ladder system was introduced in late 2013 with the intent to provide an interesting random opponent mode for Blizzard's Hearthstone
+game. The goal of any system of this type is two fold. First they usually want players to be playing against opponents of similar skill levels as 
+consistently playing against much better or much worse players is not fun or engaging for most people. The HLS is interesting in that it departs from
+Blizzard's proven MMR based matching making techniques and using a more transparent system for choosing oppoents.
+
+The HLS had the following features.
+1. Every player has a rank from 20 through 1 with 20 being the worst and 1 being the best, players start at 20 and can't go higher.
+2. When players request a game they are matched up with someone of approximately the same rank as themselves.
+3. When a player wins a game they get a star and when they lose they lose a star.
+4. Once a player gains enough stars (initially 2, later 3, and then 4 or more) they go up in rank, if they go below 0 stars for a rank they go down in rank.
+5. All players rank and star counts are reset every month.
+
+Analysis
+
+The rank and stars system boils down to a basic win - loss count (ie if you win 10 games and lose 5 you'll have a +/- of 5). There are exceptions,
+such as that you can't go negative (so losing 100 in a row and then winning 5 straight is equivalent to going 5-0). I call a players +/- score where losses are ignored
+if you are at a +/- of 0 the star count. The ranks are essentially a way of bucketing people with similar star counts together. People with a star count of 0-2
+are rank 20, 3-5 are 19, 6-8 are 18, etc.
+
+The effect of this system in the long term is similar to a ladder using MMR matching making. Players who win more will play against others who have won more,
+causing a negative feedback loop where they will tend to play against better and better opponents. This causes them to start losing more often and eventually will
+cause them to lose rank. They then play against worse oppoents and should eventually tend to stabalize at a rank where their skill makes them win approximately 
+50% of their games.
+
+A ladder reset destroys this effect until the ladder stabalizes, and because of a rank gain braking mechanism this stabalization takes a long time.
+
+After a reset all players are rank 20 and so everyone will tend to play against opponents of random skill. At this point players better than average will
+increase in rank playing against average oppoents. After a time these better half will have ranked up a some, at this point the worse half will lose on average though
+and so will go back down to rank 20. They will then still be better than those players and so rank up, however some will again rank down, and so it continues...
+I call this effect the "thrashing" of player rank.
+
+Further complicating this situation is that the "thrashing" time period will be extended because it will take quite a while before the ladder stabalizes with
+players have a higher rank than worse players. When the leading edge of the ladder is decreasing their rank they will only be playing against other of similar
+rank - the other very best players. This means that players that would normally win almost every game at rank 15 will only win near 50% during the time that the
+other very best are rank 15. And this continues for every rank 19-1, extending the amount of time before the ladder stabalizes.
+
+This analysis shows that there are several problems with the HLS in the time period after a reset before the system stablizes.
+1. At rank 20 players will be playing against skill level opponents whose skill is essentially random.
+2. Only the best rank 20 players will be able to leave rank 20. Only after they are gone will the next skill level in order leave, continueing all the way down.
+3. The ladder will take a long time to stabalize.
+
+Thesis
+
+If this analysis is true then the following observations should be able to be made using the simulation.
+1. The average skill difference in matches played will be high for all ranks except for the most advanced ranked players.
+2. Moderate strength opponents will leave rank 20 only to go back, this will repeat most for the most average players.
+3. The number of games to get to a stable rank will be much higher than if a player is introduced to a stable ladder.
+4. If plotted on a graph of increasing strength by descreasing rank the graph will start as a flat line and then will slowly pick itself up from the left side, 
+eventually becoming a negatively sloped line.
