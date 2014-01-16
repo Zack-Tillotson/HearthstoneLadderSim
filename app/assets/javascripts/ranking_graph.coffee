@@ -17,8 +17,8 @@ class App.RankingGraph
 
     @graph = new Rickshaw.Graph
       element: $(@container).find(@graphSelector)[0]
-      height: $(@container).find(@graphSelector).width() * 2 / 3
       width: $(@container).find(@graphSelector).width() - 50
+      height: $(@container).find(@graphSelector).height()
       renderer: 'bar'
       max: 21
       min: .75

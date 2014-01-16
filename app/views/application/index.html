@@ -1,16 +1,36 @@
 <h1>Hearthstone-Style Ladder Simulation</h1>
 
-<button type="button" id="startstop">Start/Stop</button>
-<button type="button" id="reset">Reset</button>
-<div id="container1" class="graphcontainer">
-  <div class="yaxis"></div>
-  <div class="graph"></div>
+<div id="controls">
+  <h3>Controls</h3>
+  <button type="button" id="start">Start</button>
+  <button type="button" id="pause">Pause</button>
+  <button type="button" id="reset">Reset</button>
 </div>
-<div id="container2" class="graphcontainer">
-  <div class="yaxis"></div>
-  <div class="graph"></div>
+<div id="currentround">
+  <h3>Round <span id="roundvalue">0</span></h3>
+  <span class="btnlabel">Jump Ahead</span>
+  <button type="button" id="jump1">+1</button>
+  <button type="button" id="jump50">+50</button>
+  <button type="button" id="jump500">+500</button>
 </div>
-<div id="container3" class="graphcontainer">
-  <div class="yaxis"></div>
-  <div class="graph"></div>
+<div id="q1">
+  <h2>Do Better Players Go Up Rank?</h2>
+  <div id="container1" class="graphcontainer">
+    <h3>Player Rankings</h3>
+    <div class="yaxis"></div>
+    <div class="graph"></div>
+  </div>
+</div>
+<div id="q2">
+  <h2>How Well Are Players Matched Up?</h2>
+  <div id="container2" class="graphcontainer">
+    <h3>Average Opponent Strength</h3>
+    <div class="yaxis"></div>
+    <div class="graph"></div>
+  </div>
+  <div id="container3" class="graphcontainer">
+    <h3>Average Difference From Opponent</h3>
+    <div class="yaxis"></div>
+    <div class="graph"></div>
+  </div>
 </div>

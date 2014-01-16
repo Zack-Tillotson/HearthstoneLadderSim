@@ -12,19 +12,19 @@ class App.SkillDiffGraph
     $(@container).find(@yaxisSelector).html ""
 
     actors = options.actors
-    data = _.map _.filter(actors, (item) -> item.strength in [10, 30, 50, 70, 90]), (actor) -> 
-      {x: actor.strength, y: Math.abs(actor.getAvgOppStrength() - actor.strength)}
+    data = _.map actors, (actor) -> 
+      {x: actor.strength, y: 0}
 
     @graph = new Rickshaw.Graph
       element: $(@container).find(@graphSelector)[0]
-      height: $(@container).find(@graphSelector).width() * 2 / 3
       width: $(@container).find(@graphSelector).width() - 50
+      height: $(@container).find(@graphSelector).height()
       renderer: 'bar'
       min: 0
       series: [
         {
           "color": "red"
-          "name": "Player Rank"
+          "name": "Average Skill Difference, Last N Games"
           "data": data
         }
       ]
@@ -38,11 +38,16 @@ class App.SkillDiffGraph
       orientation: 'left'
       element: $(@container).find(@yaxisSelector)[0]
 
+    @hoverDetail = new Rickshaw.Graph.HoverDetail
+      graph: @graph
+      xFormatter: (x) -> "#{x}th Weakest Player"
+      yFormatter: (y) -> "#{y}"
+
     @graph.render()
     @
 
   update: (actors) ->
-    data = _.map _.filter(actors, (item) -> item.strength in [10, 30, 50, 70, 90]), (actor) -> 
+    data = _.map actors, (actor) -> 
       {x: actor.strength, y: Math.abs(actor.getAvgOppStrength() - actor.strength)}
 
     avgvalue = _.reduce(actors, (mem, actor) ->

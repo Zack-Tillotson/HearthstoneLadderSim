@@ -12,20 +12,20 @@ class App.OppSkillGraph
     $(@container).find(@yaxisSelector).html ""
 
     actors = options.actors
-    data = _.map _.filter(actors, (item) -> item.strength in [10, 30, 50, 70, 90]), (actor) -> 
+    data = _.map actors, (actor) -> 
       {x: actor.strength, y: Math.abs(actor.getAvgOppStrength())}
 
     @graph = new Rickshaw.Graph
       element: $(@container).find(@graphSelector)[0]
-      height: $(@container).find(@graphSelector).width() * 2 / 3
       width: $(@container).find(@graphSelector).width() - 50
+      height: $(@container).find(@graphSelector).height()
       renderer: 'bar'
       max: actors.length
       min: 0
       series: [
         {
           "color": "red"
-          "name": "Player Rank"
+          "name": "Average Opponent Strength"
           "data": data
         }
       ]
@@ -39,11 +39,16 @@ class App.OppSkillGraph
       orientation: 'left'
       element: $(@container).find(@yaxisSelector)[0]
 
+    @hoverDetail = new Rickshaw.Graph.HoverDetail
+      graph: @graph
+      xFormatter: (x) -> "#{x}th Weakest Player"
+      yFormatter: (y) -> "#{y}"
+
     @graph.render()
     @
 
   update: (actors) ->
-    data = _.map _.filter(actors, (item) -> item.strength in [10, 30, 50, 70, 90]), (actor) -> 
+    data = _.map actors, (actor) -> 
       {x: actor.strength, y: Math.abs(actor.getAvgOppStrength())}
 
     @graph.series[0].data = data

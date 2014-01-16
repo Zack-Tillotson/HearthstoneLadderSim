@@ -5,6 +5,7 @@ class App.Simulation
   initialize: (options = {}) ->
     @numActors = (options.numActors - options.numActors % 2) if options.numActors
     @actors = (new App.Actor().initialize(strength: num) for num in [0...@numActors])
+    @round = 0
     @rankingGraph = new App.RankingGraph().initialize(actors: @actors, container: '#container1')
     @oppSkillGraph = new App.OppSkillGraph().initialize(actors: @actors, container: '#container2')
     @skillDiffGraph = new App.SkillDiffGraph().initialize(actors: @actors, container: '#container3')
@@ -21,6 +22,8 @@ class App.Simulation
     # In each matchup determine a winner and loser
     for i in [0...@actors.length] by 2
       @doMatchup @actors[i], @actors[i + 1]
+
+    @round++
 
   doMatchup: (a, b) ->
 
