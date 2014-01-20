@@ -30,10 +30,6 @@ class App.RankingGraph
         }
       ]
 
-    @xaxis = new Rickshaw.Graph.Axis.X
-      graph: @graph
-      orientation: 'top'
-
     @yaxis = new Rickshaw.Graph.Axis.Y
       graph: @graph
       orientation: 'left'

@@ -1,9 +1,10 @@
 class App.Actor
   initialize: (options) ->
     @strength = options.strength
+    @playRate = options.playRate or .5
     @stars = 0
     @lastNGames = []
-    @n = 10
+    @n = 100
     @
 
   recordGame: (opp, isWin) ->
@@ -13,8 +14,8 @@ class App.Actor
     else
       if @stars > 0
         @stars--
-    if (@lastNGames.unshift opp.strength) > @n
-      @lastNGames.pop
+    if (@lastNGames.unshift opp.getRank()) > @n
+      @lastNGames.pop()
 
   getRank: ->
     if @stars < 4 then return 20 # 3

@@ -21,6 +21,7 @@ class App.SkillDiffGraph
       height: $(@container).find(@graphSelector).height()
       renderer: 'bar'
       min: 0
+      max: 20
       series: [
         {
           "color": "red"
@@ -28,10 +29,6 @@ class App.SkillDiffGraph
           "data": data
         }
       ]
-
-    @xaxis = new Rickshaw.Graph.Axis.X
-      graph: @graph
-      orientation: 'top'
 
     @yaxis = new Rickshaw.Graph.Axis.Y
       graph: @graph
@@ -48,7 +45,7 @@ class App.SkillDiffGraph
 
   update: (actors) ->
     data = _.map actors, (actor) -> 
-      {x: actor.strength, y: Math.abs(actor.getAvgOppStrength() - actor.strength)}
+      {x: actor.strength, y: Math.abs(actor.getAvgOppStrength() - actor.getRank())}
 
     avgvalue = _.reduce(actors, (mem, actor) ->
       mem + actor.getAvgOppStrength()

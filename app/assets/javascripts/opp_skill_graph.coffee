@@ -20,7 +20,6 @@ class App.OppSkillGraph
       width: $(@container).find(@graphSelector).width() - 50
       height: $(@container).find(@graphSelector).height()
       renderer: 'bar'
-      max: actors.length
       min: 0
       series: [
         {
@@ -29,10 +28,6 @@ class App.OppSkillGraph
           "data": data
         }
       ]
-
-    @xaxis = new Rickshaw.Graph.Axis.X
-      graph: @graph
-      orientation: 'top'
 
     @yaxis = new Rickshaw.Graph.Axis.Y
       graph: @graph
