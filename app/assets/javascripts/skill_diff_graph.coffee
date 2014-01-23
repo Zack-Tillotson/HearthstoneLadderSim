@@ -21,7 +21,7 @@ class App.SkillDiffGraph
       height: $(@container).find(@graphSelector).height()
       renderer: 'bar'
       min: 0
-      max: 20
+      max: 1
       series: [
         {
           "color": "red"
@@ -45,7 +45,7 @@ class App.SkillDiffGraph
 
   update: (actors) ->
     data = _.map actors, (actor) -> 
-      {x: actor.strength, y: Math.abs(actor.getAvgOppStrength() - actor.getRank())}
+      {x: actor.strength, y: Math.abs(actor.getAvgOppStrength() - actor.strength)}
 
     avgvalue = _.reduce(actors, (mem, actor) ->
       mem + actor.getAvgOppStrength()

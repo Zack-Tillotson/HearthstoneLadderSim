@@ -21,6 +21,7 @@ class App.OppSkillGraph
       height: $(@container).find(@graphSelector).height()
       renderer: 'bar'
       min: 0
+      max: 1
       series: [
         {
           "color": "red"

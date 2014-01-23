@@ -44,7 +44,7 @@ class App.RankingGraph
     @
 
   update: (actors) ->
-    data = _.map actors.slice(0, actors.length - 0), (actor) ->
+    data = _.map actors, (actor) ->
       {x: actor.strength, y: actor.getRank()}
 
     @graph.series[0].data = data

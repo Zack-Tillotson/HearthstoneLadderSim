@@ -14,7 +14,7 @@ class App.Actor
     else
       if @stars > 0
         @stars--
-    if (@lastNGames.unshift opp.getRank()) > @n
+    if (@lastNGames.unshift opp.strength) > @n
       @lastNGames.pop()
 
   getRank: ->

@@ -2,6 +2,8 @@
 
 class App.Simulation
 
+  speed: 250 # Default iteration wait time
+
   initialize: (options = {}) ->
 
     @numActors = (options.numActors - options.numActors % 2) if options.numActors
