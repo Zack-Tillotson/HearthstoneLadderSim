@@ -78,3 +78,14 @@ $(document).ready ->
       deterministic: $('#deterministic').prop 'checked'
       fullParticipation: $('#fullpart').prop 'checked'
       proportionalPlayRate: $('#propart').prop 'checked'
+
+  $(".main").onepage_scroll
+    sectionContainer: "section"
+    easing: "ease"
+    animationTime: 1000
+    pagination: true
+    updateURL: false
+    beforeMove: ->
+    afterMove: ->
+    loop: false
+    responsiveFallback: false

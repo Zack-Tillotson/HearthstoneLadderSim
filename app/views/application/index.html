@@ -1,60 +1,151 @@
-<h1>Hearthstone-Style Ladder Simulation</h1>
-
-<div id="controls">
-  <h3>Controls</h3>
-  <button type="button" id="start">Start</button>
-  <button type="button" id="pause">Pause</button>
-  <button type="button" id="faster">Faster</button>
-  <button type="button" id="slower">Slower</button>
-  <button type="button" id="reset">Start Over</button>
-</div>
-<div id="currentround">
-  <h3>Round <span id="roundvalue">0</span></h3>
-  <span class="btnlabel">Jump Ahead</span>
-  <button type="button" id="jump1">+1</button>
-  <button type="button" id="jump50">+50</button>
-  <button type="button" id="jump500">+500</button>
-</div>
-<div id="options">
-  <h3>Options</h3>
-  <table>
-    <tr>
-      <td><label for="deterministic">Deterministic</label></td>
-      <td><input id="deterministic" type="checkbox" checked/></td>
-    </tr>
-    <tr>
-      <td><label for="fullpart">Full participation</label></td>
-      <td><input id="fullpart" type="checkbox" /></td>
-    </tr>
-    <tr>
-      <td><label for="propart">Participation rate proportional to Skill</label></td>
-      <td><input id="propart" type="checkbox" checked /></td>
-    </tr>
-    <tr>
-      <td><label for="numplayers">Number of players</label></td>
-      <td><input id="numplayers" type="range" min="2" max="1000" value="100" /></td>
-    </tr>
-  </table>
-  <button type="button" id="resetoptions">Default</button>
-</div>
-<div id="q1">
-  <h2>Do Better Players Go Up Rank?</h2>
-  <div id="container1" class="graphcontainer">
-    <h3>Player Rankings</h3>
-    <div class="yaxis"></div>
-    <div class="graph"></div>
-  </div>
-</div>
-<div id="q2">
-  <h2>How Well Are Players Matched Up?</h2>
-  <div id="container2" class="graphcontainer">
-    <h3>Average Opponent Strength</h3>
-    <div class="yaxis"></div>
-    <div class="graph"></div>
-  </div>
-  <div id="container3" class="graphcontainer">
-    <h3>Average Difference From Opponent</h3>
-    <div class="yaxis"></div>
-    <div class="graph"></div>
-  </div>
+<nav>
+  <h1>Hearthstone Ladder Analysis</h1>
+  <ul>
+    <li><a href="#page1">Introduction</a></li>
+    <li><a href="#page2">Reset</a></li>
+    <li><a href="#page3">Negative Feedback</a></li>
+    <li><a href="#page4">Simulation</a></li>
+    <li><a href="#page5">Suggestions</a></li>
+    <li><a href="#page6">About</a></li>
+  </ul>
+</nav>
+<div class="main">
+	<section id="page1">
+		<h2>Hearthstone is a great game but its competitive ladder has a fatal flaw!</h2>
+		<div class="desc">
+			<div class="point">
+				<h3>Users join a queue where they are matched against other players</h3>
+				<p>Players start at rank 20 and can improve until rank 1. The ladder selects another player of the same rank to play against. When you win you gain ranking points, when you lose you lose them.</p>
+			</div>
+			<div class="point">
+				<h3>This system works well</h3>
+				<p>Strong players win a lot and improve in rank, weak players don't advance. Players quickly advance to a rank where others of similar skill are. Most matches are competitive because of the similar strength of players.</p>
+			</div>
+		</div>
+		<div class="pics">
+			<div class="pic1"></div>
+			<div class="pic2"></div>
+		</div>
+		<div class="lead">This works great until...<div>
+	</section>
+	<section id="page2">
+		<h2>The ladder resets every month</h2>
+		<div class="desc">
+			<div class="point">
+				<h3>Everyone is the same level</h3>
+				<span>The best players are now playing against the worst.</span>
+				<span>The average difference in skill between players sky rockets.</span>
+				<span>Most games are one sided, not fun for either party.</span>
+			</div>
+		</div>
+		<div class="pics">
+			<div class="pic3"></div>
+			<div class="pic4"></div>
+		</div>
+		<div class="lead">This is excacerbated because...<div>
+	</section>
+	<section id="page3">
+		<h2>The problem lasts longer than you'd think</h2>
+		<div class="desc">
+			Ye<div class="point">
+				<h3>Negative feedback loops are built into the game</h3>
+				<span>Noone can leave rank 20 until better players leave.</span>
+				<span>The best players are playing against other good players, slowing their ranking up.</span>
+				<span>Any mediocre player who improves in rank to be pushed back.</span>
+			</div>
+		</div>
+		<div class="pics">
+			<div class="pic5"></div>
+			<div class="pic6"></div>
+		</div>
+		<div class="lead">You can see what's happening for yourself...</div>
+	</section>
+	<section id="page4">
+		<div id="controls">
+		  <h3>Controls</h3>
+		  <button type="button" id="start">Start</button>
+		  <button type="button" id="pause">Pause</button>
+		  <button type="button" id="faster">Faster</button>
+		  <button type="button" id="slower">Slower</button>
+		  <button type="button" id="reset">Start Over</button>
+		</div>
+		<div id="currentround">
+		  <h3>Round <span id="roundvalue">0</span></h3>
+		  <span class="btnlabel">Jump Ahead</span>
+		  <button type="button" id="jump1">+1</button>
+		  <button type="button" id="jump50">+50</button>
+		  <button type="button" id="jump500">+500</button>
+		</div>
+		<div id="options">
+		  <h3>Options</h3>
+		  <table>
+		    <tr>
+		      <td><label for="deterministic">Deterministic</label></td>
+		      <td><input id="deterministic" type="checkbox" checked/></td>
+		    </tr>
+		    <tr>
+		      <td><label for="fullpart">Full participation</label></td>
+		      <td><input id="fullpart" type="checkbox" /></td>
+		    </tr>
+		    <tr>
+		      <td><label for="propart">Participation rate proportional to Skill</label></td>
+		      <td><input id="propart" type="checkbox" checked /></td>
+		    </tr>
+		    <tr>
+		      <td><label for="numplayers">Number of players</label></td>
+		      <td><input id="numplayers" type="range" min="2" max="1000" value="100" /></td>
+		    </tr>
+		  </table>
+		  <button type="button" id="resetoptions">Default</button>
+		</div>
+		<div id="q1">
+		  <h3>Do Better Players Go Up Rank?</h3>
+		  <div id="container1" class="graphcontainer">
+		    <h3>Player Rankings</h3>
+		    <div class="yaxis"></div>
+		    <div class="graph"></div>
+		  </div>
+		</div>
+		<div id="q2">
+		  <h3>How Well Are Players Matched Up?</h3>
+		  <div id="container2" class="graphcontainer">
+		    <h3>Average Opponent Strength</h3>
+		    <div class="yaxis"></div>
+		    <div class="graph"></div>
+		  </div>
+		  <div id="container3" class="graphcontainer">
+		    <h3>Average Difference From Opponent</h3>
+		    <div class="yaxis"></div>
+		    <div class="graph"></div>
+		  </div>
+	</section>
+	<section id="page5">
+		<h2>What other options should Blizzard consider?</h2>
+		<div class="desc">
+			<div class="point">
+				<h3>Don't reset the ladder so often</h3>
+				<span>Players like improving rank and resetting the ranks allows that more often</span>
+				<span>The first week of every month much will be terrible games.</span>
+				<span>Good players are wasting their time.</span>
+				<span>New and weak players are getting stomped.</span>
+			</div>
+			<div class="point">
+				<h3>Use an MMR based match making system</h3>
+				<span>Other Blizzard games predict players skill based on their past results.</span>
+				<span>Using this MMR tool allows for better matchings, improving the game for everyone.</span>
+			</div>
+		</div>
+		<div class="pics">
+			<div class="whome"></div>
+		</div>
+	</section>
+	<section id="page6">
+    <h2>About Me</h2>
+		<div class="desc">
+			<div class="point">
+				<h3>This is my personal analysis and opinion.</h3>
+        <p>Yep.</p>
+      </div>
+    </div>
+	</section>
 </div>

@@ -17,4 +17,5 @@
 //= require d3.layout.min.js
 //= require rickshaw.min.js
 //= require underscore.min.js
+//= require jquery.onepage-scroll.js
 //= require_tree .

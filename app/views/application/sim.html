@@ -1,0 +1,69 @@
+<div class="main">
+	<section>
+		<h1>Hearthstone-Style Ladder Simulation</h1>
+
+		<div id="controls">
+		  <h3>Controls</h3>
+		  <button type="button" id="start">Start</button>
+		  <button type="button" id="pause">Pause</button>
+		  <button type="button" id="faster">Faster</button>
+		  <button type="button" id="slower">Slower</button>
+		  <button type="button" id="reset">Start Over</button>
+		</div>
+		<div id="currentround">
+		  <h3>Round <span id="roundvalue">0</span></h3>
+		  <span class="btnlabel">Jump Ahead</span>
+		  <button type="button" id="jump1">+1</button>
+		  <button type="button" id="jump50">+50</button>
+		  <button type="button" id="jump500">+500</button>
+		</div>
+		<div id="options">
+		  <h3>Options</h3>
+		  <table>
+		    <tr>
+		      <td><label for="deterministic">Deterministic</label></td>
+		      <td><input id="deterministic" type="checkbox" checked/></td>
+		    </tr>
+		    <tr>
+		      <td><label for="fullpart">Full participation</label></td>
+		      <td><input id="fullpart" type="checkbox" /></td>
+		    </tr>
+		    <tr>
+		      <td><label for="propart">Participation rate proportional to Skill</label></td>
+		      <td><input id="propart" type="checkbox" checked /></td>
+		    </tr>
+		    <tr>
+		      <td><label for="numplayers">Number of players</label></td>
+		      <td><input id="numplayers" type="range" min="2" max="1000" value="100" /></td>
+		    </tr>
+		  </table>
+		  <button type="button" id="resetoptions">Default</button>
+		</div>
+		<div id="q1">
+		  <h2>Do Better Players Go Up Rank?</h2>
+		  <div id="container1" class="graphcontainer">
+		    <h3>Player Rankings</h3>
+		    <div class="yaxis"></div>
+		    <div class="graph"></div>
+		  </div>
+		</div>
+		<div id="q2">
+		  <h2>How Well Are Players Matched Up?</h2>
+		  <div id="container2" class="graphcontainer">
+		    <h3>Average Opponent Strength</h3>
+		    <div class="yaxis"></div>
+		    <div class="graph"></div>
+		  </div>
+		  <div id="container3" class="graphcontainer">
+		    <h3>Average Difference From Opponent</h3>
+		    <div class="yaxis"></div>
+		    <div class="graph"></div>
+		  </div>
+	</section>
+	<section>
+		Page 2
+	</section>
+	<section>
+		Page 3
+	</section>
+</div>
