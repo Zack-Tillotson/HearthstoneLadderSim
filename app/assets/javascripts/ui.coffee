@@ -89,3 +89,10 @@ $(document).ready ->
     afterMove: ->
     loop: false
     responsiveFallback: false
+
+  $("nav .pages a").on "click", (e) ->
+    $('.main').moveTo $(e.target).attr('datapage')
+    return false
+
+  _.each $('.desc'), (item) ->
+    $(item).css "top", ($(item).parent().height() - $(item).height())/2
