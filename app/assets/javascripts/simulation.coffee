@@ -19,7 +19,6 @@ class App.Simulation
     @playRate = .5
 
     @rankingGraph = new App.RankingGraph().initialize(actors: @actors, container: '#container1')
-    @oppSkillGraph = new App.OppSkillGraph().initialize(actors: @actors, container: '#container2')
     @skillDiffGraph = new App.SkillDiffGraph().initialize(actors: @actors, container: '#container3')
 
   doRound: ->
@@ -69,5 +68,4 @@ class App.Simulation
       a.strength - b.strength
 
     @rankingGraph.update(@actors)
-    @oppSkillGraph.update(@actors)
     @skillDiffGraph.update(@actors)

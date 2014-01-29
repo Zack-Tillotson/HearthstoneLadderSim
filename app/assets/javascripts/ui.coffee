@@ -10,12 +10,18 @@ $(document).ready ->
   $('#start').on 'click', ->
     if window.sim.interval
       clearInterval window.sim.interval
+    $('#status').html "playing"
+    $('#start').attr "disabled", "true"
+    $('#pause, #faster, #slower').removeAttr "disabled"
     window.sim.interval = setInterval ->
       window.sim.simulateRounds 1
       $('#roundvalue').html(window.sim.round)
     , window.sim.speed
 
   $('#pause').on 'click', ->
+    $('#status').html "paused"
+    $('#pause, #faster, #slower').attr "disabled", "true"
+    $('#start').removeAttr "disabled"
     if window.sim.interval
       clearInterval window.sim.interval
       window.sim.interval = null
@@ -40,18 +46,15 @@ $(document).ready ->
 
   # Don't reset the configuration, just the simulation
   $('#reset').on 'click', ->
-    if window.sim.interval
-      clearInterval window.sim.interval
-      window.sim.interval = null
     window.sim.initialize()
     $('#roundvalue').html window.sim.round
 
   # Reset the simulation to default values
-  $('#optionsreset').on 'click', ->
+  $('#resetoptions').on 'click', ->
     $('#numplayers').val "100"
     $('#deterministic').prop 'checked', true
-    $('#fullpart').prop 'checked', false
-    $('#propart').prop 'checked', true
+    $('#fullpart').prop 'checked', true
+    $('#propart').prop 'checked', false
     window.sim.initialize(
       numActors: $('#numplayers').val()
       deterministic: $('#deterministic').prop 'checked'
@@ -86,6 +89,12 @@ $(document).ready ->
     pagination: true
     updateURL: false
     beforeMove: ->
+      if window.sim.interval
+        $('#status').html "paused"
+        $('#start').removeAttr "disabled"
+        $('#pause, #faster, #slower').attr "disabled", "true"
+        clearInterval window.sim.interval
+        window.sim.interval = null
     afterMove: ->
     loop: false
     responsiveFallback: false

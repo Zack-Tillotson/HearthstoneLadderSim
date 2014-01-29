@@ -15,16 +15,20 @@ class App.RankingGraph
     data = _.map actors.slice(0, actors.length - 0), (actor) ->
       {x: actor.strength, y: actor.getRank()}
 
+    width = $(@container).find(@graphSelector).width() - 40
+    console.log
+      width: width
+      height: width / 1.6
     @graph = new Rickshaw.Graph
       element: $(@container).find(@graphSelector)[0]
-      width: $(@container).find(@graphSelector).width() - 50
-      height: $(@container).find(@graphSelector).height()
-      renderer: 'bar'
+      width: width
+      height: width / 1.6
+      renderer: 'line'
       max: 21
       min: .75
       series: [
         {
-          "color": "red"
+          "color": "rgba(255,0,0,.7)"
           "name": "Player Rank"
           "data": data
         }
@@ -32,8 +36,15 @@ class App.RankingGraph
 
     @yaxis = new Rickshaw.Graph.Axis.Y
       graph: @graph
-      orientation: 'left'
+      orientation: 'right'
       element: $(@container).find(@yaxisSelector)[0]
+
+    @xaxis = new Rickshaw.Graph.Axis.X
+      graph: @graph
+      orientation: 'top'
+      tickFormat: (x) ->
+        parseFloat(Math.round(x * 100) / 100).toFixed(2)
+      element: $(@container).find(@xaxisSelector)[0]
 
     @hoverDetail = new Rickshaw.Graph.HoverDetail
       graph: @graph

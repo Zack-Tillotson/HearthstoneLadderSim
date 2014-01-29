@@ -26,7 +26,7 @@ nav
 .main 
   font-size: 20px
   section
-    padding: 75px 20px 20px 20px
+    padding: 75px 0 0 0
     overflow: hidden
     h2 
       margin: 20px
@@ -52,16 +52,19 @@ nav
     .desc
       position: absolute
       display: inline-block
-      width: 40%
+      width: -webkit-calc(40% - 40px)
+      width: calc(40% - 40px)
+      padding: 0 20px
       .point p
         text-align: justify
         padding-left: 35px
     .pics
       position: absolute
       display: inline-block
-      width: 60%
+      width: -webkit-calc(60% - 40px)
+      width: calc(60% - 40px)
       right: 0
-      padding-right: 35px
+      padding: 0 20px
     .lead
       font-size: 30px
       text-align: center
@@ -69,41 +72,75 @@ nav
       bottom: 115px
       width: 100%
 
-#controls, #currentround, #options
-  font-size: 20px
+.controlsection
 
   button, input
-    padding: 10px
-    font-size: 20px
+    padding: 5px
+    font-size: 15px
     display: inline-block
 
   h3
     display: inline-block
-    margin-right: 30px
+    width: 150px
+    margin: 0
+    font-size: 20px
+
+  &.important
+    margin-bottom: 25px
+
+    button, input
+      padding: 10px
+      font-size: 20px
+      display: inline-block
+      width: calc(33% - 20px)
+
+      &.important
+        background-color: rgba(163, 252, 143, 0.53)
+        &[disabled]
+          background-color: rgb(192, 192, 192)
+
+  table
+    width: 100%
+    margin: 0 auto
+    background-color: #999
+    color: black
+    padding: 10px 20px
+    border-radius: 5px
+
+    input
+      float: right
+
+  &.sub
+    margin-left: 50px
+
+  #resetoptions:link, #resetoptions:visited
+    color: black
+    text-decoration: none
+    float: right
+    font-size: 12px
 
 #q1
-  width: -webkit-calc(33% - 20px)
-  width: calc(33% - 20px)
+  width: -webkit-calc(50% - 20px)
+  width: calc(50% - 20px)
   margin: 0
   padding: 10px
   float: left
 
   #container1
-    width: -webkit-calc(100% - 20px)
-    width: calc(100% - 20px)
+    width: -webkit-calc(100%)
+    width: calc(100%)
     display: inline-block
 
 #q2
-  width: -webkit-calc(65% - 20px)
-  width: calc(65% - 20px)
+  width: -webkit-calc(50% - 20px)
+  width: calc(50% - 20px)
   margin: 0
   padding: 10px
   float: left
 
-  #container2, #container3
-    width: -webkit-calc(50% - 20px)
-    width: calc(50% - 20px)
-    margin-left: 10px
+  #container3
+    width: -webkit-calc(100%)
+    width: calc(100%)
     display: inline-block
 
 .graphcontainer
@@ -112,7 +149,8 @@ nav
   .yaxis
     float: left
     width: 20px
+    color: #444
 
   .graph
-    padding: 5px
+    padding: 25px 0px
     background-color: white
