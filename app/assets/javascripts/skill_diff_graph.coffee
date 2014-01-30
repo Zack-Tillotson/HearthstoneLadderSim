@@ -15,16 +15,18 @@ class App.SkillDiffGraph
     data = _.map actors, (actor) -> 
       {x: actor.strength, y: 0}
 
+    width = $(@container).find(@graphSelector).width() - 40
+
     @graph = new Rickshaw.Graph
       element: $(@container).find(@graphSelector)[0]
-      width: $(@container).find(@graphSelector).width() - 50
-      height: $(@container).find(@graphSelector).height()
-      renderer: 'bar'
+      width: width
+      height: width / 1.6
+      renderer: 'line'
       min: 0
-      max: 1
+      max: .5
       series: [
         {
-          "color": "red"
+          "color": "rgba(255,0,0,.7)"
           "name": "Average Skill Difference, Last N Games"
           "data": data
         }
@@ -32,8 +34,14 @@ class App.SkillDiffGraph
 
     @yaxis = new Rickshaw.Graph.Axis.Y
       graph: @graph
-      orientation: 'left'
+      orientation: 'right'
       element: $(@container).find(@yaxisSelector)[0]
+
+    @xaxis = new Rickshaw.Graph.Axis.X
+      graph: @graph
+      orientation: 'top'
+      tickFormat: (x) ->
+        parseFloat(Math.round(x * 100) / 100).toFixed(2)
 
     @hoverDetail = new Rickshaw.Graph.HoverDetail
       graph: @graph

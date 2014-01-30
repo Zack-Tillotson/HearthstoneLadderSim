@@ -16,14 +16,12 @@ class App.RankingGraph
       {x: actor.strength, y: actor.getRank()}
 
     width = $(@container).find(@graphSelector).width() - 40
-    console.log
-      width: width
-      height: width / 1.6
+
     @graph = new Rickshaw.Graph
       element: $(@container).find(@graphSelector)[0]
       width: width
       height: width / 1.6
-      renderer: 'line'
+      renderer: 'bar'
       max: 21
       min: .75
       series: [
@@ -44,7 +42,6 @@ class App.RankingGraph
       orientation: 'top'
       tickFormat: (x) ->
         parseFloat(Math.round(x * 100) / 100).toFixed(2)
-      element: $(@container).find(@xaxisSelector)[0]
 
     @hoverDetail = new Rickshaw.Graph.HoverDetail
       graph: @graph

@@ -27,8 +27,7 @@
 			</div>
 		</div>
 		<div class="pics">
-			<div class="pic1"></div>
-			<div class="pic2"></div>
+			<img src="assets/ideal.png"/>
 		</div>
 		<div class="lead">There is a problem though...<div>
 	</section>
@@ -45,8 +44,7 @@
 			</div>
 		</div>
 		<div class="pics">
-			<div class="pic3"></div>
-			<div class="pic4"></div>
+			<img src="assets/reset.png"/>
 		</div>
 		<div class="lead">This is excacerbated because...<div>
 	</section>
@@ -63,8 +61,7 @@
 			</div>
 		</div>
 		<div class="pics">
-			<div class="pic5"></div>
-			<div class="pic6"></div>
+			<img src="assets/high-variance.png"/>
 		</div>
 		<div class="lead">You can see what's happening for yourself...</div>
 	</section>
@@ -90,10 +87,9 @@
       </div>
       <div class="controlsection">
         <ul>
-          <li>Each player has a strength [0,1] which determines how good they are.</li>
-          <li>Each round players are matched with similar ranked opponents.</li>
-          <li>Everyone starts the same rank 20</li>
-          <li>Players improve in rank by winning.</li>
+          <li>Each player has a strength [0,1].</li>
+          <li>Everyone starts at rank 20.</li>
+          <li>Each round players are matched with similarly ranked opponents.</li>
           <li>The graphs are sorted by player strength, from weakest to stongest.</li>
         </ul>
       </div>
@@ -132,8 +128,6 @@
           <h3>Player Rankings</h3>
           <div class="yaxis"></div>
           <div class="graph"></div>
-          <div class="ylabel">Rank</div>
-          <div class="xlabel">Player Strength</div>
         </div>
       </div>
       <div id="q2">
@@ -154,11 +148,11 @@
 		<div class="desc">
 			<div class="point">
 				<h3>Don't reset the ladder so often.</h3>
-				<span>The first week of every month will be full of terrible games. Until they get past the clutter, good players are wasting their time. During ths time new and weak players get stomped. The ladder system works well except during this initial period.</span>
+				<span>The first week of every month will be full of terrible games. Until the ladder sorts itself, good players are wasting their time and weak players will just get stomped. The ladder system works well except during this initial period, so minimize how often it's in that state.</span>
 			</div>
 			<div class="point">
 				<h3>Use an MMR based match making system.</h3>
-				<span>Other Blizzard games predict players skill based on their past results, using this "MMR" tool allows for better matchings.</span>
+				<span>Other Blizzard games predict players skill based on their past resultsi when choosing opponents, using this "MMR" tool allows for better matchings.</span>
 			</div>
 		</div>
 		<div class="pics">
@@ -170,15 +164,11 @@
 		<div class="desc">
 			<div class="point">
 				<h3>This is my personal analysis and opinion.</h3>
-        <p>I don't think the issues with the ladder are incredibly serious, but the the ladder is less than ideal. My goal with this site was to explore this interesting ladder issue I've run across.</p>
+        <p>My goal with this site was to explore this interesting ladder issue. I don't think these issues are incredibly serious, but the the ladder is less than ideal so why not fix it.</p>
       </div>
 			<div class="point">
 				<h3>Want more information on the simulation?</h3>
         <p>The simulation was written in Coffeescript, you can see the entire codebase <a href="https://github.com/Zack-Tillotson/HearthstoneLadderSim">here</a>.</p>
-      </div>
-			<div class="point">
-				<h3>Comments? Suggestions?</h3>
-        <p>Feel free to send email to ZackTillotson at gmail</p>
       </div>
     </div>
 	</section>
