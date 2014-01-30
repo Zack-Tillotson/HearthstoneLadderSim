@@ -2,14 +2,14 @@
 
 class App.Simulation
 
-  speed: 250 # Default iteration wait time
-
   initialize: (options = {}) ->
 
     @numActors = (options.numActors - options.numActors % 2) if options.numActors
     @deterministicWinning = options.deterministic if options.deterministic
     @fullParticipation = options.fullParticipation if options.fullParticipation
     @proportionalPlayRate = options.proportionalPlayRate if options.proportionalPlayRate
+    @container1 = options.container1 if options.container1
+    @container2 = options.container2 if options.container2
 
     @actors = (new App.Actor().initialize(
         strength: num / (@numActors - 1) # [0,1] with higher being better
@@ -17,11 +17,13 @@ class App.Simulation
     ) for num in [0...@numActors])
     @round = 0
     @playRate = .5
+    @speed = 250 # Default iteration wait time
 
-    @rankingGraph = new App.RankingGraph().initialize(actors: @actors, container: '#container1')
-    @skillDiffGraph = new App.SkillDiffGraph().initialize(actors: @actors, container: '#container3')
+    @rankingGraph = new App.RankingGraph().initialize(actors: @actors, container: @container1)
+    @skillDiffGraph = new App.SkillDiffGraph().initialize(actors: @actors, container: @container2)
 
   doRound: ->
+    console.log "doRound", @
 
     # Choose which actors are participating this round
     participants = @actors

@@ -21,7 +21,7 @@ class App.RankingGraph
       element: $(@container).find(@graphSelector)[0]
       width: width
       height: width / 1.6
-      renderer: 'bar'
+      renderer: 'line'
       max: 21
       min: .75
       series: [
@@ -45,7 +45,7 @@ class App.RankingGraph
 
     @hoverDetail = new Rickshaw.Graph.HoverDetail
       graph: @graph
-      xFormatter: (x) -> "#{x}th Weakest Player"
+      xFormatter: (x) -> "Strength [0,1] = #{parseFloat(Math.round(x * 100) / 100).toFixed(2);}"
       yFormatter: (y) -> "#{y}"
 
     @graph.render()
