@@ -117,6 +117,7 @@ $(document).ready ->
     container1: "#container5"
     container2: "#container6"
   }
+  App.spsim.simulateRounds 2000
 
   App.spsim.speed = 500
 
@@ -126,18 +127,46 @@ $(document).ready ->
     $('#spstatus').html("paused")
 
   App.startSpSim = ->
+    console.log "sp sim", 1
     if App.spsim.interval
       clearInterval App.spsim.interval
-    App.spsim.interval = setInterval ->
-      console.log "sp int"
+    $('#sprestart').hide()
+    $('#beforecurrentround').show()
+    $('#atcurrentround').hide()
+    $('#aftercurrentround').hide()
+
+    App.spsim.interval = setInterval -> # Step 1 start sim from steady state
+      console.log "sp sim", 2
+      App.spsim.simulateRounds 1
+
       if App.spsim.round > 2010
         App.spsim.initialize()
-      else if App.spsim.round < 2000 and App.spsim.round is 15
-        App.pauseSpSim()
-      else
         App.spsim.simulateRounds 1
-        $('#sproundvalue').html(App.spsim.round)
+        $('#beforecurrentround').hide()
+        $('#atcurrentround').show()
+        $('#aftercurrentround').hide()
+        App.spsim.speed = 250
+
+        clearInterval App.spsim.interval # Step 2 Pause after reset
+        App.spsim.interval = setInterval ->
+          console.log "sp sim", 3
+
+          clearInterval App.spsim.interval
+          App.spsim.interval = setInterval -> # Step 3 Start up again
+            console.log "sp sim", 4
+            $('#beforecurrentround').hide()
+            $('#atcurrentround').hide()
+            $('#aftercurrentround').show()
+            if App.spsim.round is 15
+              App.pauseSpSim()
+              $('#sprestart').show()
+            else
+              App.spsim.simulateRounds 1
+          , App.spsim.speed
+        , 3000
     , App.spsim.speed
+
+  $('#sprestart').on 'click', App.startSpSim
 
   # Other UI stuff #######################################################################################
 
@@ -153,6 +182,7 @@ $(document).ready ->
       App.pauseSpSim()
     afterMove: (i) ->
       i = $('.section.active').attr('data-index')
+      $("nav li").removeClass("active").find("a[datapage=#{i}]").parent().addClass("active")
       if "#{i}" is "1"
         App.startFpSim()
       if "#{i}" is "2"
@@ -171,3 +201,5 @@ $(document).ready ->
 
   _.each $('.graphs'), (item) ->
     $(item).css "top", ($(item).parent().height() - $(item).height())/2
+
+    $('img.highlight').css('width', $('body').height()-150).css('height', $('body').height()-150).css('bottom', '150px').parent().css('top', 'auto')

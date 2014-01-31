@@ -23,7 +23,6 @@ class App.Simulation
     @skillDiffGraph = new App.SkillDiffGraph().initialize(actors: @actors, container: @container2)
 
   doRound: ->
-    console.log "doRound", @
 
     # Choose which actors are participating this round
     participants = @actors

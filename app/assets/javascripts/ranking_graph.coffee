@@ -21,7 +21,7 @@ class App.RankingGraph
       element: $(@container).find(@graphSelector)[0]
       width: width
       height: width / 1.6
-      renderer: 'line'
+      renderer: 'bar'
       max: 21
       min: .75
       series: [

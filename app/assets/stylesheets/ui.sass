@@ -22,6 +22,8 @@ nav
         text-decoration: none
       a:hover
         color: blue
+      &.active
+        border: solid 1px silver
 
 .main 
   font-size: 20px
@@ -30,7 +32,6 @@ nav
     overflow: hidden
     h2 
       margin: 20px
-      text-align: center
     &#page1
       color: black
       background: rgb(230, 217, 200)
@@ -67,8 +68,12 @@ nav
       padding: 0 20px
       img
         display: block
-        width: 65%
         margin: 0 auto
+        position: relative
+      .graphs-title
+        font-weight: bold
+        text-align: center
+        font-size: 25px
     .lead
       font-size: 30px
       text-align: center

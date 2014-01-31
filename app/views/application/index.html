@@ -1,7 +1,7 @@
 <nav>
   <h1>Game Analysis: Hearthstone</h1>
   <ul class="pages">
-    <li><a href="#page1" datapage="1">Introduction</a></li>
+    <li class="active"><a href="#page1" datapage="1">Introduction</a></li>
     <li><a href="#page2" datapage="2">Reset</a></li>
     <li><a href="#page3" datapage="3">Negative Feedback</a></li>
     <li><a href="#page4" datapage="4">Simulation</a></li>
@@ -27,23 +27,22 @@
 			</div>
 		</div>
 		<div class="graphs">
+      <div class="graphs-title">
+        A simulation, note the how players are usually fairly equal.
+      </div>
       <div class="graphSection">
         <div id="container3" class="graphContainer">
-          <h3>Player Rankings</h3>
           <div class="yaxis"></div>
           <div class="graph"></div>
+          <h3>Player Rankings</h3>
         </div>
       </div>
       <div class="graphSection">
         <div id="container4" class="graphContainer">
-          <h3>Avg. Skill Difference From Opponent</h3>
           <div class="yaxis"></div>
           <div class="graph"></div>
+          <h3>Avg. Skill Difference From Opponent</h3>
         </div>
-      </div>
-      <div id="fpcurrentround">
-        Simulation <span id="fpstatus"> playing</span>,
-        <span class="round">round <span id="fproundvalue">0</span></span>.
       </div>
 		</div>
 		<div class="lead">There is a problem though...<div>
@@ -53,31 +52,36 @@
 		<div class="desc">
 			<div class="point">
 				<h3>Everyone becomes the same level.</h3>
-				<span>After a reset everyone is the same rank and so they play each other randomly. The average difference in skill between players becomes very high.</span>
+				<p>After a reset everyone is the same rank and so they play each other randomly. The average difference in skill between players becomes very high, especially for the strongest and weakest players.</p>
 			</div>
 			<div class="point">
 				<h3>The compact ladder makes games one sided.</h3>
-				<span>The average difference in skill between players becomes very high. This isn't fun for anyone. Good players aren't challenged and bad players have no chance. Most games are one sided, not fun for either party.</span>
+				<p>The average difference in skill between players becomes very high. This isn't fun for anyone. Good players aren't challenged and bad players have no chance. Most games are one sided, not fun for either party.</p>
 			</div>
 		</div>
 		<div class="graphs">
+      <div class="graphs-title" id="beforecurrentround">
+        Before the reset the average skill diffference is low.
+      </div>
+      <div class="graphs-title" id="atcurrentround" style="display: none">
+        Then the ladder resets, everyone is rank 20 and plays a random opponent.
+      </div>
+      <div class="graphs-title" id="aftercurrentround" style="display: none">
+        Players will start to sort themselves by skill, but it's slow.
+      </div>
       <div class="graphSection">
         <div id="container5" class="graphContainer">
-          <h3>Player Rankings</h3>
           <div class="yaxis"></div>
           <div class="graph"></div>
+          <h3>Player Rankings</h3>
         </div>
       </div>
       <div class="graphSection">
         <div id="container6" class="graphContainer">
-          <h3>Avg. Skill Difference From Opponent</h3>
           <div class="yaxis"></div>
           <div class="graph"></div>
+          <h3>Avg. Skill Difference From Opponent</h3>
         </div>
-      </div>
-      <div id="currentround">
-        Simulation <span id="spstatus"> playing</span>,
-        <span class="round">round <span id="sproundvalue">0</span></span>.
       </div>
 		</div>
 		<div class="lead">This is excacerbated because...<div>
@@ -87,20 +91,20 @@
 		<div class="desc">
 			<div class="point">
 				<h3>Negative feedback loops are built into the system.</h3>
-				<span>As the better players start to improve in rank they will play against the other good players. This slows their rate of rank improvement.</span>
+				<p>As the better players start to improve in rank they will play against the other good players. This slows their rate of rank improvement.</p>
 			</div>
 			<div class="point">
 				<h3>Moderately skilled players can't keep their improved rank.</h3>
-				<span>Any mediocre player who improves in rank will play against the really good players, causing them to lose rank. This gain and loss could keep happening until the better players have ranked farther along.</span>
+				<p>Any mediocre player who improves in rank will lose that rank quickly because they play against the good players. This back and frth keeps happening until the better players have ranked farther along.</p>
 			</div>
 		</div>
 		<div class="graphs">
-			<img src="assets/high-variance.png"/>
+			<img class="highlight" src="assets/round-arrow.png"/>
 		</div>
 		<div class="lead">You can see what's happening for yourself...</div>
 	</section>
 	<section id="page4">
-		<h2>Simulation of ladder reset</h2>
+		<h2>Simulation</h2>
 		<div class="desc">
       <div class="controlsection important">
         <button type="button" id="start" class="important">Start</button>
@@ -153,23 +157,23 @@
       </div>
 		</div>
 		<div class="graphs">
+      <div id="currentround" class="graphs-title">
+        Simulation <span id="status">paused</span>,
+        <span class="round">round <span id="roundvalue">0</span></span>.
+      </div>
       <div class="graphSection">
         <div id="container1" class="graphContainer">
-          <h3>Player Rankings</h3>
           <div class="yaxis"></div>
           <div class="graph"></div>
+          <h3>Player Rankings</h3>
         </div>
       </div>
       <div class="graphSection">
         <div id="container2" class="graphContainer">
-          <h3>Avg. Skill Difference From Opponent</h3>
           <div class="yaxis"></div>
           <div class="graph"></div>
+          <h3>Avg. Skill Difference From Opponent</h3>
         </div>
-      </div>
-      <div id="currentround">
-        Simulation <span id="status">paused</span>,
-        <span class="round">round <span id="roundvalue">0</span></span>.
       </div>
     </div>
 	</section>
@@ -178,11 +182,11 @@
 		<div class="desc">
 			<div class="point">
 				<h3>Don't reset the ladder so often.</h3>
-				<span>The first week of every month will be full of terrible games. Until the ladder sorts itself, good players are wasting their time and weak players will just get stomped. The ladder system works well except during this initial period, so minimize how often it's in that state.</span>
+				<p>The first week of every month will be full of terrible games. Until the ladder sorts itself, good players are wasting their time and weak players will just get stomped. The ladder system works well except during this initial period, so minimize how often it's in that state.</p>
 			</div>
 			<div class="point">
 				<h3>Use an MMR based match making system.</h3>
-				<span>Other Blizzard games predict players skill based on their past resultsi when choosing opponents, using this "MMR" tool allows for better matchings.</span>
+				<p>Other Blizzard games predict players skill based on their past resultsi when choosing opponents, using this "MMR" tool allows for better matchings.</p>
 			</div>
 		</div>
 		<div class="graphs">
