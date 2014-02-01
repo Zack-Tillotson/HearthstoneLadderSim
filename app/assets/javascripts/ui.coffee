@@ -127,46 +127,61 @@ $(document).ready ->
     $('#spstatus').html("paused")
 
   App.startSpSim = ->
-    console.log "sp sim", 1
+
     if App.spsim.interval
       clearInterval App.spsim.interval
-    $('#sprestart').hide()
-    $('#beforecurrentround').show()
-    $('#atcurrentround').hide()
-    $('#aftercurrentround').hide()
+
+    $('#beforecurrentround').toggleClass "inactive", false
+    $('#atcurrentround').toggleClass "inactive", true
+    $('#aftercurrentround').toggleClass "inactive", true
 
     App.spsim.interval = setInterval -> # Step 1 start sim from steady state
-      console.log "sp sim", 2
+
       App.spsim.simulateRounds 1
 
       if App.spsim.round > 2010
+
         App.spsim.initialize()
         App.spsim.simulateRounds 1
-        $('#beforecurrentround').hide()
-        $('#atcurrentround').show()
-        $('#aftercurrentround').hide()
         App.spsim.speed = 250
 
+        $('#beforecurrentround').toggleClass "inactive", true
+        $('#atcurrentround').toggleClass "inactive", false
+        $('#aftercurrentround').toggleClass "inactive", true
+
         clearInterval App.spsim.interval # Step 2 Pause after reset
+
         App.spsim.interval = setInterval ->
-          console.log "sp sim", 3
 
           clearInterval App.spsim.interval
           App.spsim.interval = setInterval -> # Step 3 Start up again
-            console.log "sp sim", 4
-            $('#beforecurrentround').hide()
-            $('#atcurrentround').hide()
-            $('#aftercurrentround').show()
+
+            $('#beforecurrentround').toggleClass "inactive", true
+            $('#atcurrentround').toggleClass "inactive", true
+            $('#aftercurrentround').toggleClass "inactive", false
+
             if App.spsim.round is 15
               App.pauseSpSim()
-              $('#sprestart').show()
+
+              App.spsim.interval = setInterval ->
+
+                App.spsim.simulateRounds 1985
+                App.startSpSim()
+
+              , 5000
+
             else
               App.spsim.simulateRounds 1
+
           , App.spsim.speed
+
         , 3000
+
     , App.spsim.speed
 
-  $('#sprestart').on 'click', App.startSpSim
+  $('#beforecurrentround').toggleClass "inactive", false
+  $('#atcurrentround').toggleClass "inactive", true
+  $('#aftercurrentround').toggleClass "inactive", true
 
   # Other UI stuff #######################################################################################
 
@@ -190,16 +205,16 @@ $(document).ready ->
         App.spsim.simulateRounds 2000
         App.startSpSim()
     loop: false
-    responsiveFallback: 900
+    responsiveFallback: 1000
 
   $("nav .pages a").on "click", (e) ->
     $('.main').moveTo $(e.target).attr('datapage')
     return false
 
-  _.each $('.desc'), (item) ->
+  _.each $('.onepage-wrapper .desc'), (item) ->
     $(item).css "top", ($(item).parent().height() - $(item).height())/2
 
-  _.each $('.graphs'), (item) ->
+  _.each $('.onepage-wrapper .graphs'), (item) ->
     $(item).css "top", ($(item).parent().height() - $(item).height())/2
 
-    $('img.highlight').css('width', $('body').height()-150).css('height', $('body').height()-150).css('bottom', '150px').parent().css('top', 'auto')
+  $('img.highlight').css('width', $('body').height()-150).css('height', $('body').height()-150).css('bottom', '150px').parent().css('top', 'auto')

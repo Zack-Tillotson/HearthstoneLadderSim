@@ -9,7 +9,7 @@
     <li><a href="#page6" datapage="6">About</a></li>
   </ul>
 </nav>
-<div class="main">
+<div class="main no-onepage">
 	<section id="page1">
 		<h2>Hearthstone is a great game with an unique competitive ladder.</h2>
 		<div class="desc">
@@ -19,16 +19,16 @@
 			</div>
 			<div class="point">
 				<h3>The ladder chooses another player with the same rank to play against.</h3>
-				<p>Unlike previous Blizzard ladders this doesn't use an estimate of your skill.</p>
+				<p>Unlike previous Blizzard ladders this doesn't use an estimate of your strength.</p>
 			</div>
 			<div class="point">
 				<h3>This system works well.</h3>
-				<p>Strong players win a lot and improve in rank, weak players don't advance. Players quickly advance to a rank where others of similar skill are. Most matches are competitive because of the similar strength of players.</p>
+				<p>Strong players win a lot and improve in rank, weak players don't advance. Players quickly advance to a rank where others of similar strength are. Most matches are competitive because of the similar strength of players.</p>
 			</div>
 		</div>
 		<div class="graphs">
       <div class="graphs-title">
-        A simulation, note the how players are usually fairly equal.
+        A simulation, see how the players are close in strength across the spectrum.
       </div>
       <div class="graphSection">
         <div id="container3" class="graphContainer">
@@ -52,21 +52,21 @@
 		<div class="desc">
 			<div class="point">
 				<h3>Everyone becomes the same level.</h3>
-				<p>After a reset everyone is the same rank and so they play each other randomly. The average difference in skill between players becomes very high, especially for the strongest and weakest players.</p>
+				<p>After a reset everyone is the same rank and so they play each other randomly. The average difference in strength between players becomes very high, especially for the strongest and weakest players.</p>
 			</div>
 			<div class="point">
 				<h3>The compact ladder makes games one sided.</h3>
-				<p>The average difference in skill between players becomes very high. This isn't fun for anyone. Good players aren't challenged and bad players have no chance. Most games are one sided, not fun for either party.</p>
+				<p>The average difference in strength between players becomes very high. This isn't fun for anyone. Good players aren't challenged and bad players have no chance. Most games are one sided, not fun for either party.</p>
 			</div>
 		</div>
 		<div class="graphs">
       <div class="graphs-title" id="beforecurrentround">
         Before the reset the average skill diffference is low.
       </div>
-      <div class="graphs-title" id="atcurrentround" style="display: none">
+      <div class="graphs-title" id="atcurrentround" class="inactive">
         Then the ladder resets, everyone is rank 20 and plays a random opponent.
       </div>
-      <div class="graphs-title" id="aftercurrentround" style="display: none">
+      <div class="graphs-title" id="aftercurrentround" class="inactive">
         Players will start to sort themselves by skill, but it's slow.
       </div>
       <div class="graphSection">
@@ -186,23 +186,27 @@
 			</div>
 			<div class="point">
 				<h3>Use an MMR based match making system.</h3>
-				<p>Other Blizzard games predict players skill based on their past resultsi when choosing opponents, using this "MMR" tool allows for better matchings.</p>
+				<p>Other Blizzard games predict players skill based on their past results when choosing opponents, using this "MMR" tool allows for better matchings.</p>
 			</div>
 		</div>
 		<div class="graphs">
+			<img class="highlight" src="assets/bandaid_beige.png"/>
 		</div>
 	</section>
 	<section id="page6">
-    <h2>About This Site and Me</h2>
+    <h2>About The Site</h2>
 		<div class="desc">
 			<div class="point">
-				<h3>This is my personal analysis and opinion.</h3>
-        <p>My goal with this site was to explore this interesting ladder issue. I don't think these issues are incredibly serious, but the the ladder is less than ideal so why not fix it.</p>
+				<h3>This is just one guy's analysis and opinion.</h3>
+        <p>My goal with this site was to explore this interesting ladder issue. I don't think these issues are incredibly serious, but the the ladder is less than ideal so why not fix it. You can see more of my work at <a href="http://www.ZacheryTillotson.com">ZacheryTillotson.com</a>.</p>
       </div>
 			<div class="point">
 				<h3>Want more information on the simulation?</h3>
-        <p>The simulation was written in Coffeescript, you can see the entire codebase <a href="https://github.com/Zack-Tillotson/HearthstoneLadderSim">here</a>.</p>
+        <p>The page and simulation was written in Coffeescript within a RoR environment (the <a href="https://github.com/Zack-Tillotson/HearthstoneLadderSim">codebase</a>). Besides the <a href="http://jquery.com/">jQuery</a> and <a href="http://underscorejs.org/">Underscore</a> libraries, I used <a href="hthe ttp://code.shutterstock.com/rickshaw/">Rickshaw</a> for the graphs and <a href="https://github.com/peachananr/onepage-scroll">Onepage Scroll</a> for the scroll effect.</p>
       </div>
     </div>
+		<div class="graphs">
+			<a href="http://zacherytillotson.com/blog/2014/hearthstone/"><img class="highlight" src="assets/card-packs.png"/></a>
+		</div>
 	</section>
 </div>
