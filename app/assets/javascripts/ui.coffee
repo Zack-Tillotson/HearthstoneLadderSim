@@ -185,6 +185,7 @@ $(document).ready ->
 
   # Other UI stuff #######################################################################################
 
+  $(".main").removeClass 'no-onepage'
   $(".main").onepage_scroll
     sectionContainer: "section"
     easing: "ease"

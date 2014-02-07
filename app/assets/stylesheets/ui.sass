@@ -30,20 +30,35 @@ nav
     position: static
     ul.pages
       display: none
-  .main.no-onepage
+  .main
     section
       overflow: visible
       position: static
       height: auto
       padding: 20px
-    div.desc, div.graphs, div.lead
-      display: block
-      width: 95%
-      position: static
-      overflow: wrap
-      margin-right: 10px
-    div.graphs, #page4
-      display: none
+      div.desc, div.graphs, div.lead
+        display: block
+        width: 95%
+        position: static
+        overflow: wrap
+        margin-right: 10px
+        .graphSection
+          height: 325px
+        img.highlight
+          bottom: 0!important
+      &#page4
+        .graphs
+          height: 325px
+
+.main.no-onepage
+  background: #333
+  .spinner
+    display: block !important
+    position: fixed
+    left: calc(50% - 24px)
+    top: calc(50% - 24px)
+  section
+    display: none
 
 .main
   font-size: 20px
